@@ -32,3 +32,11 @@ This project is a backend application for a social media platform that combines 
 3. Set up environment variables, including MongoDB connection string, Cloudinary credentials, and JWT secret key.
 4. Run the application using `npm run dev`.
 
+## Postman API Documentation
+Explore the available API endpoints and test them using Postman. Import the provided collection and environment files into your Postman workspace to get started.
+
+### Importing Postman Collection
+- Click [here](https://api.postman.com/collections/27666366-dbb180ef-79f7-4661-a930-76712ba3b798?access_key=PMAT-01HTH9ADH98MF1PD7C2KHNQWQB) to import the Postman Collection.
+
+Once imported, you can start testing the APIs.
+
