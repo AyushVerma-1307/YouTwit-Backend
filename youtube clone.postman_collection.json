@@ -1,0 +1,1246 @@
+{
+	"info": {
+		"_postman_id": "dbb180ef-79f7-4661-a930-76712ba3b798",
+		"name": "youtube clone",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Tests\" tab**\n\nTests help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/b5f280a7-4b09-48ec-857f-0a7ed99d7ef8/U2NyZWVuc2hvdCAyMDIzLTAzLTI3IGF0IDkuNDcuMjggUE0ucG5n\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) in \"Tests\" to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27666366"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "get all videos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/videos/?page=1&limit=10&query=search+term&sortBy=date&sortType=asc",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"videos",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "query",
+									"value": "search+term"
+								},
+								{
+									"key": "sortBy",
+									"value": "date"
+								},
+								{
+									"key": "sortType",
+									"value": "asc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/users/allUsers",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"users",
+								"allUsers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all comment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/comments/",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"comments",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all tweets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/tweets/",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"tweets",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "fullName",
+									"value": "ayush",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "ayush@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "abc",
+									"type": "text"
+								},
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/C:/Users/ayush/Downloads/tantric_baba_tree_house_in_the_jungle_f33d0355-60b9-4677-a74f-000f7f7909d1.png"
+								},
+								{
+									"key": "coverImage",
+									"type": "file",
+									"src": "/C:/Users/ayush/Downloads/tantric_baba_tree_house_in_the_jungle_f33d0355-60b9-4677-a74f-000f7f7909d1.png",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_Url}}/users/register",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"ayush@gmail.com\",\r\n    \"password\":\"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_Url}}/users/login",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/users/logout",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"users",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh-token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/users/refresh-token",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"users",
+								"refresh-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oldPassword\":\"1234\",\r\n    \"newPassword\":\"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_Url}}/users/change-password",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"users",
+								"change-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "current user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/users/current-user",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"users",
+								"current-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update account",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullName\":\"ayush verma\",\r\n    \"email\":\"ayush@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_Url}}/users/update-account",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"users",
+								"update-account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update avatar",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/C:/Users/ayush/OneDrive/Documents/MY DOC/profile/profile-pic.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_Url}}/users/update-avatar",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"users",
+								"update-avatar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update coverImage",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "coverImage",
+									"type": "file",
+									"src": "/C:/Users/ayush/Downloads/tantric_baba_A_photo_of_Alice_Background_of_the_Devastated_City_beb8ad60-f261-45aa-b560-5aea9b1f8449.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_Url}}/users/update-coverImage",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"users",
+								"update-coverImage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add to watch history",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/users/v/660d8f54e97f7ed0b668b507",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"users",
+								"v",
+								"660d8f54e97f7ed0b668b507"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "watchHistory",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/users/watchHistory",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"users",
+								"watchHistory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get User Channel Profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/users/c/660831bccd545742532fe63f",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"users",
+								"c",
+								"660831bccd545742532fe63f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/users/removeUser",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"users",
+								"removeUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get a user all detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/users/getUserDetails",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"users",
+								"getUserDetails"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Video",
+			"item": [
+				{
+					"name": "publish a video",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "1st Video",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "this is the first test video",
+									"type": "text"
+								},
+								{
+									"key": "videoFile",
+									"type": "file",
+									"src": "/C:/Users/ayush/Downloads/cat video.mp4"
+								},
+								{
+									"key": "thumbnail",
+									"type": "file",
+									"src": "/C:/Users/ayush/Downloads/tantric_baba_tree_house_in_the_jungle_f33d0355-60b9-4677-a74f-000f7f7909d1.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_Url}}/videos/",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"videos",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get video by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/videos/660bd5ff9e8e6f174e9c5464",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"videos",
+								"660bd5ff9e8e6f174e9c5464"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update video thumbnail",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "thumbnail",
+									"type": "file",
+									"src": "/C:/Users/ayush/Downloads/tantric_baba_tree_house_in_the_jungle_f33d0355-60b9-4677-a74f-000f7f7909d1.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_Url}}/videos/660d2119e0608e0df802cbcf",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"videos",
+								"660d2119e0608e0df802cbcf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "toggle publish status",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_Url}}/videos/toggle/publish/660bd5ff9e8e6f174e9c5464",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"videos",
+								"toggle",
+								"publish",
+								"660bd5ff9e8e6f174e9c5464"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update video view",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/videos/views/660d90f0360e19d079eea4a5",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"videos",
+								"views",
+								"660d90f0360e19d079eea4a5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Video",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/videos/660bd5ff9e8e6f174e9c5464",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"videos",
+								"660bd5ff9e8e6f174e9c5464"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Healthcheck",
+			"item": [
+				{
+					"name": "check health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/healthcheck/",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"healthcheck",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tweet",
+			"item": [
+				{
+					"name": "create tweet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\":\"bad Video\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_Url}}/tweets",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"tweets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user tweets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/tweets/userTweet",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"tweets",
+								"userTweet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update tweet",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"updatedContent\":\"worst video\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_Url}}/tweets/660be2d7880841494eb4d555",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"tweets",
+								"660be2d7880841494eb4d555"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Tweet",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/tweets/660bdfba900471b4681a486a",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"tweets",
+								"660bdfba900471b4681a486a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "subscription",
+			"item": [
+				{
+					"name": "toggle subscription",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/subscriptions/c/660d8ed4e97f7ed0b668b4ff",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"subscriptions",
+								"c",
+								"660d8ed4e97f7ed0b668b4ff"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get list of subscribers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/subscriptions/c/660d8ed4e97f7ed0b668b4ff",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"subscriptions",
+								"c",
+								"660d8ed4e97f7ed0b668b4ff"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get list of channel user subscribed",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/subscriptions/u/660d8ed4e97f7ed0b668b4ff",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"subscriptions",
+								"u",
+								"660d8ed4e97f7ed0b668b4ff"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Playlist",
+			"item": [
+				{
+					"name": "create playlist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"chai and backend 2.0\",\r\n    \"description\":\"bestest backend series\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_Url}}/playlist/",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"playlist",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add video to playlist",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/playlist/add/660d90f0360e19d079eea4a5/660d93c4360e19d079eea57a",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"playlist",
+								"add",
+								"660d90f0360e19d079eea4a5",
+								"660d93c4360e19d079eea57a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get playlist by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/playlist/660c34c8ddab569522cd68a7",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"playlist",
+								"660c34c8ddab569522cd68a7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user playlist",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/playlist/user/660831bccd545742532fe63f",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"playlist",
+								"user",
+								"660831bccd545742532fe63f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove a single video from playlist",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/playlist/remove/660c09b937c489d9c74ce639/660c34c8ddab569522cd68a7",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"playlist",
+								"remove",
+								"660c09b937c489d9c74ce639",
+								"660c34c8ddab569522cd68a7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update playlist",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"chai and code \",\r\n    \"description\":\"bestest javascript series\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_Url}}/playlist/660d93c4360e19d079eea57a",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"playlist",
+								"660d93c4360e19d079eea57a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete playlist",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/playlist/660c34c8ddab569522cd68a7",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"playlist",
+								"660c34c8ddab569522cd68a7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "comment",
+			"item": [
+				{
+					"name": "get all comment of a video",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/comments/660bd5ff9e8e6f174e9c5464",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"comments",
+								"660bd5ff9e8e6f174e9c5464"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\":\"best video\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_Url}}/comments/660d8f54e97f7ed0b668b507",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"comments",
+								"660d8f54e97f7ed0b668b507"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete comment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/comments/c/660c4476089126ab0922170a",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"comments",
+								"c",
+								"660c4476089126ab0922170a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update comment",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\":\"super good video\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_Url}}/comments/c/660c4497089126ab0922170d",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"comments",
+								"c",
+								"660c4497089126ab0922170d"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Like",
+			"item": [
+				{
+					"name": "toggle video like",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/likes/toggle/v/660d8f54e97f7ed0b668b507",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"likes",
+								"toggle",
+								"v",
+								"660d8f54e97f7ed0b668b507"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "toggle comment like",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/likes/toggle/c/660d917e360e19d079eea4d0",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"likes",
+								"toggle",
+								"c",
+								"660d917e360e19d079eea4d0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "toggle tweet like",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/likes/toggle/t/660d9143360e19d079eea4bc",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"likes",
+								"toggle",
+								"t",
+								"660d9143360e19d079eea4bc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all User liked videos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/likes/likedVideos",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"likes",
+								"likedVideos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all user liked tweets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/likes/likedTweets",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"likes",
+								"likedTweets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user liked comments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/likes/likedComments",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"likes",
+								"likedComments"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "dashboard",
+			"item": [
+				{
+					"name": "get channel stats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/dashboard/stats",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"dashboard",
+								"stats"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get channel videos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_Url}}/dashboard/videos",
+							"host": [
+								"{{base_Url}}"
+							],
+							"path": [
+								"dashboard",
+								"videos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}
