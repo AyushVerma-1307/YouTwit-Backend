@@ -217,15 +217,6 @@ const deleteVideo = asyncHandler(async (req, res) => {
   }
 
   try {
-    // Check if the video is in any playlist
-    const playlistsWithVideo = await Playlist.find({ videos: videoId });
-
-    if (playlistsWithVideo.length > 0) {
-      const playlistNames = playlistsWithVideo.map((playlist) => playlist.name);
-      const message = `The video is in the following playlists: ${playlistNames.join(", ")}. Please remove it from these playlists before deleting.`;
-      return res.status(400).json(new ApiResponse(400, null, message));
-    }
-
     // Delete all likes associated with the video
     await Like.deleteMany({ video: videoId });
 
