@@ -30,5 +30,5 @@ This project is a backend application for a social media platform that combines 
 1. Clone the repository to your local machine.
 2. Install dependencies using `npm install`.
 3. Set up environment variables, including MongoDB connection string, Cloudinary credentials, and JWT secret key.
-4. Run the application using `npm start`.
+4. Run the application using `npm run dev`.
 
