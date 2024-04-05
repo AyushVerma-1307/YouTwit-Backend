@@ -36,7 +36,7 @@ This project is a backend application for a social media platform that combines 
 Explore the available API endpoints and test them using Postman. Import the provided collection and environment files into your Postman workspace to get started.
 
 ### Importing Postman Collection
-1. Click [here](https://api.postman.com/collections/27666366-dbb180ef-79f7-4661-a930-76712ba3b798?access_key=PMAT-01HTH9ADH98MF1PD7C2KHNQWQB) to import the Postman Collection.
+- use `youtube clone.postman_collection` to import the Postman Collection.
 
 Once imported, you can start testing the APIs.
 
