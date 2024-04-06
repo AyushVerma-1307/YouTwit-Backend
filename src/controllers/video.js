@@ -310,36 +310,6 @@ const togglePublishStatus = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, updatedVideo, "Video publish status updated"));
 });
 
-const updateVideoViews = asyncHandler(async (req, res) => {
-  const { videoId } = req.params;
-  const userId = req.user?._id;
-  if (!videoId.trim()) {
-    throw new ApiError(400, "Invalid video id");
-  }
-  if (!isValidObjectId(videoId)) {
-    throw new ApiError(400, "Invalid video id");
-  }
-
-  // Find the video by its ID
-  const video = await Video.findByIdAndUpdate(
-            videoId,
-            {
-                $inc: {views: 1}
-            },
-            {new: true}
-        )
-
-  if (!video) {
-    // Handle the case where the video is not found
-    console.log("Video not found");
-    throw new ApiError(404, "Video not found");
-  }
-
-  // Return a success response
-  return res
-    .status(200)
-    .json(new ApiResponse(200, null, "Video views updated successfully"));
-});
 
 export {
   getAllVideos,
@@ -348,5 +318,4 @@ export {
   updateVideo,
   deleteVideo,
   togglePublishStatus,
-  updateVideoViews,
 };

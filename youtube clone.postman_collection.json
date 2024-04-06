@@ -475,23 +475,23 @@
 							"formdata": [
 								{
 									"key": "title",
-									"value": "1st Video",
+									"value": "2st Video",
 									"type": "text"
 								},
 								{
 									"key": "description",
-									"value": "this is the first test video",
+									"value": "this is the second test video",
 									"type": "text"
 								},
 								{
 									"key": "videoFile",
 									"type": "file",
-									"src": "/C:/Users/ayush/Downloads/cat video.mp4"
+									"src": "/C:/Users/ayush/Downloads/test/cat video.mp4"
 								},
 								{
 									"key": "thumbnail",
 									"type": "file",
-									"src": "/C:/Users/ayush/Downloads/tantric_baba_tree_house_in_the_jungle_f33d0355-60b9-4677-a74f-000f7f7909d1.png"
+									"src": "/C:/Users/ayush/Downloads/test/tantric_baba_A_photo_of_Alice_Background_of_the_Devastated_City_beb8ad60-f261-45aa-b560-5aea9b1f8449.png"
 								}
 							]
 						},
@@ -514,13 +514,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_Url}}/videos/660bd5ff9e8e6f174e9c5464",
+							"raw": "{{base_Url}}/videos/6610eeb8d900bab5c09c78ce",
 							"host": [
 								"{{base_Url}}"
 							],
 							"path": [
 								"videos",
-								"660bd5ff9e8e6f174e9c5464"
+								"6610eeb8d900bab5c09c78ce"
 							]
 						}
 					},
@@ -538,6 +538,16 @@
 									"key": "thumbnail",
 									"type": "file",
 									"src": "/C:/Users/ayush/Downloads/tantric_baba_tree_house_in_the_jungle_f33d0355-60b9-4677-a74f-000f7f7909d1.png"
+								},
+								{
+									"key": "title",
+									"value": "update video title",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "updated video description",
+									"type": "text"
 								}
 							]
 						},
@@ -578,25 +588,6 @@
 								"toggle",
 								"publish",
 								"660bd5ff9e8e6f174e9c5464"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update video view",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"url": {
-							"raw": "{{base_Url}}/videos/views/660d90f0360e19d079eea4a5",
-							"host": [
-								"{{base_Url}}"
-							],
-							"path": [
-								"videos",
-								"views",
-								"660d90f0360e19d079eea4a5"
 							]
 						}
 					},
@@ -1081,7 +1072,7 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "{{base_Url}}/likes/toggle/c/660d917e360e19d079eea4d0",
+							"raw": "{{base_Url}}/likes/toggle/c/6610fc05f4e4fda9650074a0",
 							"host": [
 								"{{base_Url}}"
 							],
@@ -1089,7 +1080,7 @@
 								"likes",
 								"toggle",
 								"c",
-								"660d917e360e19d079eea4d0"
+								"6610fc05f4e4fda9650074a0"
 							]
 						}
 					},

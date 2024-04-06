@@ -3,6 +3,7 @@ import { Playlist } from "../models/playlist.js";
 import { ApiError } from "../utils/apiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
+import { Video } from "../models/video.js";
 
 const createPlaylist = asyncHandler(async (req, res) => {
   //TODO: create playlist
@@ -85,10 +86,16 @@ const getPlaylistById = asyncHandler(async (req, res) => {
 
 const addVideoToPlaylist = asyncHandler(async (req, res) => {
   const { playlistId, videoId } = req.params;
+  console.log(playlistId, videoId);
   const userId = req.user?._id;
 
   if (!isValidObjectId(playlistId) || !isValidObjectId(videoId)) {
     console.log("invalid playlist id or video id");
+  }
+  const videoExists = await Video.findById({_id: videoId});  
+  if (!videoExists) {
+    console.log("Video not found");
+    throw new ApiError(404, "Video not found");
   }
 
   const playlist = await Playlist.findById(playlistId).select("owner");

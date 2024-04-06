@@ -3,11 +3,18 @@ import { Like } from "../models/like.js";
 import { ApiError } from "../utils/apiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
+import { Video } from "../models/video.js";
+import { Comment } from "../models/comment.js";
+import { Tweet } from "../models/tweet.js";
 
 const toggleVideoLike = asyncHandler(async (req, res) => {
   try {
     // Extract videoId from request parameters
     const { videoId } = req.params;
+    const videoExists = await Video.exists({ _id: videoId });
+    if(!videoExists) {
+      throw new ApiError(404, "Video does not exist");
+    }
 
     // Check if videoId is valid
     if (!isValidObjectId(videoId)) {
@@ -42,7 +49,10 @@ const toggleVideoLike = asyncHandler(async (req, res) => {
 const toggleCommentLike = asyncHandler(async (req, res) => {
   //TODO: toggle like on comment
   const { commentId } = req.params;
-
+  const commentExists = await Comment.exists({ _id: commentId });
+  if(!commentExists) {
+    throw new ApiError(404, "Comment does not exist");
+  }
   if (!isValidObjectId(commentId)) {
     throw new ApiError(400, "Invalid comment id");
   }
@@ -73,7 +83,10 @@ const toggleCommentLike = asyncHandler(async (req, res) => {
 const toggleTweetLike = asyncHandler(async (req, res) => {
   //TODO: toggle like on tweet
   const { tweetId } = req.params;
-
+  const tweetExists = await Tweet.exists({ _id: tweetId });
+  if(!tweetExists) {
+    throw new ApiError(404, "Tweet does not exist");
+  }
   if (!isValidObjectId(tweetId)) {
     throw new ApiError(400, "Invalid tweet id");
   }

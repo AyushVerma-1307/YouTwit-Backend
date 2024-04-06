@@ -1,6 +1,5 @@
 import { Router } from "express";
 import {
-  addToWatchHistory,
   changeCurrentPassword,
   getAllUsers,
   getCurrentUser,
@@ -45,7 +44,6 @@ router.post("/change-password", verifyJWT, changeCurrentPassword);
 router.get("/current-user", verifyJWT, getCurrentUser);
 router.patch("/update-account", verifyJWT, updateAccountDetails);
 router.get("/allUsers",getAllUsers);
-router.patch("/v/:videoId",verifyJWT,addToWatchHistory);
 
 router.patch(
   "/update-avatar",
