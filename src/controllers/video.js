@@ -122,16 +122,23 @@ const getVideoById = asyncHandler(async (req, res) => {
 
   const numberOfLikes = await Like.countDocuments({ video: videoId });
   const numberOfComments = await Comment.countDocuments({ video: videoId });
+
   const video = await Video.findById(videoId)
     .populate({
       path: "owner",
       select: "fullName username",
     })
-    .exec();
+    .select("-__v -updatedAt");
 
   if (!video) {
     throw new ApiError(404, "Video not found");
   }
+
+  await User.findbyIdAndUpdate(
+    req.user._id,
+    { $addToSet: { watchHistory: videoId } },
+    { new: true }
+  );
 
   // Dynamically add numberOfLikes to the video object
   const videoWithNumberOfLikesAndComments = {
@@ -147,10 +154,16 @@ const getVideoById = asyncHandler(async (req, res) => {
     );
 });
 
-const updateVideoThumbnail = asyncHandler(async (req, res) => {
+const updateVideo = asyncHandler(async (req, res) => {
   //TODO: update video details like title, description, thumbnail
   const { videoId } = req.params;
   const userId = req.user?._id;
+  const { title, description } = req.body;
+  const thumbnailLocalPath = req.file?.path;
+  
+  if (!thumbnailLocalPath) {
+    throw new ApiError(400, "Avatar file is required");
+  }
 
   if (!videoId.trim()) {
     throw new ApiError(400, "Invalid video id");
@@ -171,12 +184,6 @@ const updateVideoThumbnail = asyncHandler(async (req, res) => {
 
   await deleteFileFromCloudinary(videoOwner.thumbnail,false);
 
-  const thumbnailLocalPath = req.file?.path;
-
-  if (!thumbnailLocalPath) {
-    throw new ApiError(400, "Avatar file is required");
-  }
-
   const thumbnail = await uploadOnCloudinary(thumbnailLocalPath);
 
   if (!thumbnail.secure_url) {
@@ -187,6 +194,8 @@ const updateVideoThumbnail = asyncHandler(async (req, res) => {
     videoId,
     {
       $set: {
+        title,
+        description,
         thumbnail: thumbnail.secure_url,
       },
     },
@@ -222,15 +231,19 @@ const deleteVideo = asyncHandler(async (req, res) => {
 
     // Find all comments associated with the video
     const comments = await Comment.find({ video: videoId });
-
+    const commentsIds = comments.map((comment) => comment._id); // taking out the commentId
     // Loop through each comment
-    for (const comment of comments) {
-      // Delete all likes associated with the comment
-      await Like.deleteMany({ comment: comment._id });
 
-      // Delete the comment itself
-      await findByIdAndDelete(comment._id);
-    }
+    await Like.deleteMany({comment: {$in: commentsIds}});
+    await Comment.deleteMany({video: videoId});
+    
+    
+    await Playlist.updateMany(
+      { videos: videoId },
+      { $pull: { videos: videoId } }
+    );
+    
+    
     // Remove the video from all users' watch history
     await User.updateMany(
       { watchHistory: videoId },
@@ -322,7 +335,7 @@ export {
   getAllVideos,
   publishAVideo,
   getVideoById,
-  updateVideoThumbnail,
+  updateVideo,
   deleteVideo,
   togglePublishStatus,
   updateVideoViews,
