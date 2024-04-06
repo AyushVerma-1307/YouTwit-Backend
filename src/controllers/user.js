@@ -708,21 +708,15 @@ const removeUser = asyncHandler(async (req, res) => {
 
     //! Delete associated videos and their related data
     const videos = await Video.find({ owner: userId });
-    for (const video of videos) {
-      await deleteVideoAndRelatedData(video);
-    }
+    await deleteVideoAndRelatedData(videos);
 
     //! Delete associated playlists and their related data
     const playlists = await Playlist.find({ owner: userId });
-    for (const playlist of playlists) {
-      await deletePlaylistAndRelatedData(playlist);
-    }
+    await deletePlaylistAndRelatedData(playlists);
 
     //! Delete associated comments and their related data
     const comments = await Comment.find({ owner: userId });
-    for (const comment of comments) {
-      await deleteCommentAndRelatedData(comment);
-    }
+    await deleteCommentAndRelatedData(comments);
 
     //! Delete all likes associated with the user
     await Like.deleteMany({ likedBy: userId });
@@ -753,57 +747,96 @@ const removeUser = asyncHandler(async (req, res) => {
 });
 
 // Helper function to delete a video and its related data
-async function deleteVideoAndRelatedData(video) {
-  // Retrieve comments associated with the video
-  await Like.deleteMany({ video: video._id });
-  const comments = await Comment.find({ video: video._id });
-  for (const comment of comments) {
-    console.log("comment: ", comment);
-    await deleteCommentAndRelatedData(comment);
-  }
+async function deleteVideoAndRelatedData(videos) {
+  try {
+    // Extract video IDs
+    const videoIds = videos.map((video) => video._id);
 
-  // Delete the video itself
-  await deleteFileFromCloudinary(video.videoFile,true);
-  await deleteFileFromCloudinary(video.thumbnail,false);
-  await Video.findByIdAndDelete(video._id);
+    // Delete likes associated with the videos
+    await Like.deleteMany({ video: { $in: videoIds } });
+
+    // Find all comments associated with the videos
+    const comments = await Comment.find({ video: { $in: videoIds } });
+
+    // Extract comment IDs
+    const commentIds = comments.map((comment) => comment._id);
+
+    // Delete likes associated with the comments
+    await Like.deleteMany({ comment: { $in: commentIds } });
+
+    // Delete the comments
+    await Comment.deleteMany({ _id: { $in: commentIds } });
+
+    // Delete the videos and related files
+    await Promise.all(
+      videos.map(async (video) => {
+        await deleteFileFromCloudinary(video.videoFile, true);
+        await deleteFileFromCloudinary(video.thumbnail, false);
+        await Video.findByIdAndDelete(video._id);
+      })
+    );
+  } catch (error) {
+    console.error("Error deleting video and related data:", error);
+    throw error;
+  }
 }
+
 // Helper function to delete a playlist and its related data
-async function deletePlaylistAndRelatedData(playlist) {
-  // Retrieve videos associated with the playlist
-  const videos = await Video.find({ _id: { $in: playlist.videos } });
-  for (const video of videos) {
-    await deleteVideoAndRelatedData(video);
-  }
+async function deletePlaylistAndRelatedData(playlists) {
+  try {
+    const playlistIds = playlists.map((playlist) => playlist._id);
 
-  // Delete the playlist itself
-  await Playlist.findByIdAndDelete(playlist._id);
+    // Retrieve videos associated with the playlists
+    const videos = await Video.find({ playlist: { $in: playlistIds } });
+
+    // Delete related data for each video using Promise.all to ensure all deletions are completed in parallel
+    await Promise.all(
+      videos.map(async (video) => {
+        await deleteVideoAndRelatedData(video);
+      })
+    );
+
+    // Delete the playlists themselves
+    // Assuming you have the Playlist model imported
+    await Playlist.deleteMany({ _id: { $in: playlistIds } });
+  } catch (error) {
+    console.error("Error deleting playlist and related data:", error);
+    throw error;
+  }
 }
+
+
 // Helper function to delete a comment and its related data
 async function deleteCommentAndRelatedData(comment) {
-  // Delete likes associated with the comment
-  await Like.deleteMany({ comment: comment._id });
+  try {
+    // Retrieve comment IDs
+    const commentId = comment._id;
 
-  // Delete the comment itself
-  await Comment.findByIdAndDelete({ _id: comment._id });
+    // Delete likes associated with the comment
+    await Like.deleteMany({ comment: commentId });
+
+    // Delete the comment itself
+    await Comment.findByIdAndDelete(commentId);
+  } catch (error) {
+    console.error("Error deleting comment and related data:", error);
+    throw error;
+  }
 }
+
 // Helper function to delete an image from Cloudinary
 const cleanupSubscriptions = async (userId) => {
-  // Find subscriptions where the user is a subscriber
-  const subscriptions = await Subscription.find({ subscriber: userId });
+  try {
+    // Find subscriptions where the user is a subscriber and delete them
+    await Subscription.deleteMany({ subscriber: userId });
 
-  // Unsubscribe the user from all channels
-  for (const subscription of subscriptions) {
-    await Subscription.findByIdAndDelete(subscription._id);
-  }
-
-  // Find subscriptions where the user is a channel owner
-  const ownedSubscriptions = await Subscription.find({ channel: userId });
-
-  // Remove all subscribers of the user's channel
-  for (const subscription of ownedSubscriptions) {
-    await Subscription.findByIdAndDelete(subscription._id);
+    // Find subscriptions where the user is a channel owner and delete them
+    await Subscription.deleteMany({ channel: userId });
+  } catch (error) {
+    console.error("Error cleaning up subscriptions:", error);
+    throw error;
   }
 };
+
 
 export {
   registerUser,

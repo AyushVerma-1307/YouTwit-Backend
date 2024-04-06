@@ -137,9 +137,17 @@ const getVideoById = asyncHandler(async (req, res) => {
   await User.findByIdAndUpdate(
     req.user._id, 
     {
-    $addToSet: { watchHistory: videoId },
+      $addToSet: { watchHistory: videoId },
     },
     { new: true }
+  );
+
+  await Video.findByIdAndUpdate(
+    videoId,
+    {
+      $inc: {views: 1}
+    },
+    {new: true}
   );
 
   // Dynamically add numberOfLikes to the video object
@@ -314,7 +322,7 @@ const updateVideoViews = asyncHandler(async (req, res) => {
 
   // Find the video by its ID
   const video = await Video.findByIdAndUpdate(
-            searchedVideo,
+            videoId,
             {
                 $inc: {views: 1}
             },
