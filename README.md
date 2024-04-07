@@ -2,6 +2,7 @@
 
 ## Overview
 This project is a backend application for a social media platform that combines features of YouTube and Twitter. It provides functionalities for users to upload, view, and interact with videos, as well as post and engage with tweets.
+leave a star if you like.💖
 
 ## Key Features
 - **User Authentication and Authorization:** Allows users to register, login, and manage their accounts securely. Authentication middleware ensures access control to specific routes based on user roles.
@@ -26,11 +27,33 @@ This project is a backend application for a social media platform that combines 
 - Enhancement of security measures such as input validation, rate limiting, and CSRF protection.
 - Addition of features like search functionality, user profiles, and trending topics.
 
-## How to Run
+## Installation
 1. Clone the repository to your local machine.
-2. Install dependencies using `npm install`.
-3. Set up environment variables, including MongoDB connection string, Cloudinary credentials, and JWT secret key.
-4. Run the application using `npm run dev`.
+    ```bash
+    git clone https://github.com/AyushVerma-1307/Youtube-twitter-backend.git
+    ```
+
+2. Navigate to the project directory.
+    ```bash
+    cd Youtube-twitter-backend
+    ```
+
+3. Install dependencies.
+    ```bash
+    npm install
+    ```
+
+4. Set up environment variables.
+    - Create a `.env` file in the root directory of the project.
+    - Use the provided `.env.sample` file as a template and fill in the necessary values.
+    - Save the file as `.env` in the root directory.
+
+5. Run the application.
+    ```bash
+    npm run dev
+    ```
+
+6. The application should now be running locally. You can access it at `http://localhost:3000`.
 
 ## Postman API Documentation
 Explore the available API endpoints and test them using Postman. Import the provided collection and environment files into your Postman workspace to get started.
@@ -40,5 +63,8 @@ Explore the available API endpoints and test them using Postman. Import the prov
 
 Once imported, you can start testing the APIs.
 
+## Screenshots
+
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 
 
