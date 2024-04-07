@@ -64,7 +64,10 @@ Explore the available API endpoints and test them using Postman. Import the prov
 Once imported, you can start testing the APIs.
 
 ## Screenshots
+### Register Api Response Screenshot
+![Register Api Response Screenshot](https://github.com/AyushVerma-1307/Youtube-twitter-backend/blob/main/public/test%20images/register%20api%20response.PNG?raw=true)
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+### Login Api Response Screenshot
+![Login Api Response Screenshot](https://github.com/AyushVerma-1307/Youtube-twitter-backend/blob/main/public/test%20images/login%20api%20response.PNG?raw=true)
 
 
