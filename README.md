@@ -71,6 +71,6 @@ Once imported, you can start testing the APIs.
 ![Login Api Response Screenshot](https://github.com/AyushVerma-1307/Youtube-twitter-backend/blob/main/public/test%20images/login%20api%20response.PNG?raw=true)
 
 ### Register Controller Screenshot
-![Login Api Response Screenshot](https://github.com/AyushVerma-1307/Youtube-twitter-backend/blob/main/public/test%20images/Controller.PNG?raw=true)
+![Register Screenshot](https://github.com/AyushVerma-1307/Youtube-twitter-backend/blob/main/public/test%20images/controller.PNG?raw=true)
 
 
