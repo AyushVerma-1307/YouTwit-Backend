@@ -2,7 +2,7 @@
 
 ## Overview
 This project is a backend application for a social media platform that combines features of YouTube and Twitter. It provides functionalities for users to upload, view, and interact with videos, as well as post and engage with tweets.
-leave a star if you like.💖
+leave a star if you like💖.
 
 ## Key Features
 - **User Authentication and Authorization:** Allows users to register, login, and manage their accounts securely. Authentication middleware ensures access control to specific routes based on user roles.
